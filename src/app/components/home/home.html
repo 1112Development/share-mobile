@@ -1,7 +1,19 @@
+<ion-nav-bar class="nav-bar">
+            <ion-nav-buttons><button ng-show="true" class="btn-right" ui-sref="add"><i class="ion-plus-round"></i></button></ion-nav-buttons>
+</ion-nav-bar>
+
 <ion-view ng-show="{{homeCtrl.list.length > 0}}" view-title="List">
   <ion-list>
     <ion-item>
-      <img ng-repeat="item in homeCtrl.list track by $index" src={{item}}/>
+      <div class="row" ng-repeat="item in homeCtrl.list track by $index" ng-if="$index % 2 === 0">
+      <div class="col col-50" ng-if="$index < homeCtrl.list.length">
+                  <img ng-src="{{item}}" width="100%" />
+              </div>
+              <div class="col col-50" ng-if="$index + 1 < homeCtrl.list.length">
+                  <img ng-src="{{item}}" width="100%" />
+              </div>
+
+      </div>
     </ion-item>
   </ion-list>
 </ion-view>

@@ -3,8 +3,8 @@ class HomeController {
     'ngInject';
     'ngMaterial';
 
-    // this.list = ["http://placehold.it/250x250","http://placehold.it/250x250","http://placehold.it/250x250"];
-    this.list = [];
+    this.list = ["http://placehold.it/150x150","http://placehold.it/150x150","http://placehold.it/150x150"];
+    // this.list = [];
     
     
     

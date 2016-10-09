@@ -1,8 +1,15 @@
+<ion-nav-bar class="nav-bar">
+            <ion-nav-buttons>
+            <button class="back-btn" ui-sref="home"><i class="ion-arrow-left-c"></i></button>
+            <button ng-show="addCtrl.imageExists" class="btn-right" ui-sref="add"><i class="ion-checkmark-round"></i></button>
+            </ion-nav-buttons>
+</ion-nav-bar>
+
 <ion-view view-title="add">
     <ion-content>
     	<div class="container">
         <div class="square">
-      		<div class="table-contain">
+      		<div class="table-contain pad-top">
             <div class="rectangle"><h3>Add Image</h3></div>
       			<div class="center-block">
               <button class="add-image" ui-sref="add">+</button>
