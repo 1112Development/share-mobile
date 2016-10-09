@@ -8,7 +8,7 @@ class AddController {
     	return num;
     };
 
-    this.time = this.change("30");
+    this.time = this.change("30 mins");
 
     this.updateTime = (time) => {
     	if(time > 3600) {
