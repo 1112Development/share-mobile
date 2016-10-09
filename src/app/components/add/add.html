@@ -1,5 +1,16 @@
 <ion-view view-title="add">
     <ion-content>
-        <input/>
+    	<div class="container">
+    		<div class="square">
+    			<img src="http://placehold.it/400x400px"/>
+    		</div>
+       	</div>
+		<div class="range range-positive" >
+           <i class="icon ion-ios7-sunny-outline"></i>
+           <input class="range-slider" type="range" min="{{user.min}}"  max="20000" value="{{user.value}}" step="1000" ng-model="user.value">
+        </div>
+		
+
+     
     </ion-content>
 </ion-view>

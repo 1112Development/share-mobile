@@ -1,0 +1,23 @@
+html, body{
+    height: 100%;
+}
+
+.container {
+
+}
+.add-picture {
+	height:50%;
+	width:100%;
+	display: inline-block;
+}
+
+.square {
+  width: 100%;
+  height: 400px;
+  display: inline-block;
+}
+
+.square:after {
+  content: "";
+  display: block;
+}
