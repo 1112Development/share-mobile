@@ -5,12 +5,22 @@
     			<img src="http://placehold.it/400x400px"/>
     		</div>
        	</div>
-		<div class="range range-positive" >
-           <i class="icon ion-ios7-sunny-outline"></i>
-           <input class="range-slider" type="range" min="{{user.min}}"  max="20000" value="{{user.value}}" step="1000" ng-model="user.value">
+      <div class='pad-contain'>
+        <md-input-container md-no-float class="md-docs-dark-theme">
+          <input ng-model="addCtrl.caption" placeholder="Add a caption...">
+        </md-input-container>
+        <div class="text-center">
+        <h3>Self Destruct in </h3>
+    		<h2 class="time">{{addCtrl.time}}</h2>
         </div>
-		
-
-     
-    </ion-content>
+        <md-slider 
+          md-primary="#51E649" 
+          ng-change="addCtrl.updateTime(timeScale)" 
+          ng-model="timeScale"  
+          min="1800" 
+          step="1800"
+          max="21600">
+        </md-slider>
+      </div>
+	</ion-content>
 </ion-view>

@@ -11,10 +11,14 @@ import runBlock from './index.run';
 import HomeController from './components/home/home.controller.js';
 import AddController from './components/add/add.controller.js';
 import LoginController from './components/login/login.controller.js';
+import ngMaterial from 'angular-material';
+
+
+
 
 import './index.scss';
 
-angular.module('ShareMobile', ['ionic', 'ui.router'])
+angular.module('ShareMobile', ['ionic', 'ui.router','ngMaterial'])
     .constant('AppConstants', constants)
     .config(config)
     .config(routerConfig)

@@ -12,6 +12,7 @@
         <!-- run `gulp inject` to automatically populate bower styles dependencies -->
         <!-- endbower -->
         <link href="../bower_components/ionic/release/css/ionic.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
         <!-- endbuild -->
 
         <!-- build:css({.tmp/serve,src}) styles/app.css -->
@@ -29,7 +30,7 @@
             <ion-nav-buttons><button class="add-btn" ui-sref="add">+</button></ion-nav-buttons>
         </ion-nav-bar>
 
-        <ion-content ui-view="main"></ion-content>
+        <div ui-view="main"></div>
 
 
 
