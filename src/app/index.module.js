@@ -6,15 +6,17 @@ import routerConfig from './index.route';
 
 import runBlock from './index.run';
 
-import PhotolistController from './locations/photolist/photolist.controller.js';
-import PhotolistConfig from './locations/photolist/photolist.config.js';
+import HomeController from './components/home/home.controller.js';
+import AddController from './components/add/add.controller.js';
+import LoginController from './components/login/login.controller.js';
+
+import './index.scss';
 
 angular.module('ShareMobile', ['ionic', 'ui.router'])
     .constant('AppConstants', constants)
-
     .config(config)
     .config(routerConfig)
-    .config(PhotolistConfig)
     .run(runBlock)
-
-    .controller('PhotolistController', PhotolistController);
+    .controller('AddController', AddController)
+    .controller('HomeController', HomeController)
+    .controller('LoginController', LoginController);

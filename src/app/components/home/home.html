@@ -1,0 +1,19 @@
+<ion-view ng-show="{{homeCtrl.list.length > 0}}" view-title="List">
+  <ion-list>
+    <ion-item>
+      <img ng-repeat="item in homeCtrl.list track by $index" src={{item}}/>
+    </ion-item>
+  </ion-list>
+</ion-view>
+
+<ion-view ng-show="{{homeCtrl.list.length == 0}}" view-title="List">
+
+  <div class="table-contain">
+   <div class="rectangle"><h2>Add Image</h2></div>
+      <div class="center-block">
+        <button class="add-image">+</button>
+      </div>
+  </div>
+
+</ion-view>
+

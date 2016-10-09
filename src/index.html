@@ -25,14 +25,19 @@
              <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
              <![endif]-->
 
-        <ion-nav-bar class="bar-positive">
+        <ion-nav-bar class="nav-bar">
+            <ion-nav-buttons><button class="add-btn" ui-sref="add">+</button></ion-nav-buttons>
         </ion-nav-bar>
 
         <ion-tabs class="tabs-positive">
-            <ion-tab icon-on="ion-ios-home" icon-off="ion-ios-home-outline" ui-sref="photolist">
-                <ion-nav-view name="Photolist"></ion-nav-view>
+            <ion-tab icon-on="ion-ios-home" icon-off="ion-ios-home-outline" ui-sref="main">
+                <ion-nav-view name="main"></ion-nav-view>
             </ion-tab>
         </ion-tabs>
+
+
+
+        
         <!-- build:js(src) scripts/vendor.js -->
         <!-- bower:js -->
         <!-- run `gulp inject` to automatically populate bower script dependencies -->
