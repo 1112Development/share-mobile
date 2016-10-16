@@ -1,0 +1,38 @@
+<ion-nav-bar class="nav-bar">
+            <ion-nav-buttons>
+            <button class="back-btn" ui-sref="home"><i class="ion-arrow-left-c"></i></button>
+            <button ng-show="addCtrl.imageExists" class="btn-right" ui-sref="add"><i class="ion-checkmark-round"></i></button>
+            </ion-nav-buttons>
+</ion-nav-bar>
+
+<ion-view view-title="add">
+    <ion-content>
+    	<div class="container">
+        <div class="square">
+      		<div class="table-contain pad-top">
+            <div class="rectangle"><h3>Add Image</h3></div>
+      			<div class="center-block">
+              <button class="add-image" ui-sref="add">+</button>
+            </div>
+      		</div>
+         	</div>
+        </div>
+      <div class='pad-contain'>
+        <md-input-container md-no-float class="md-docs-dark-theme">
+          <input ng-model="addCtrl.caption" placeholder="Add a caption...">
+        </md-input-container>
+        <div class="text-center">
+        <h3>Self Destruct in </h3>
+    		<h2 class="time">{{addCtrl.time}}</h2>
+        </div>
+        <md-slider 
+          md-primary="#51E649" 
+          ng-change="addCtrl.updateTime(timeScale)" 
+          ng-model="timeScale"  
+          min="1800" 
+          step="1800"
+          max="21600">
+        </md-slider>
+      </div>
+	</ion-content>
+</ion-view>

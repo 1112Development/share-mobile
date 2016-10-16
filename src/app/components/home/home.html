@@ -1,0 +1,32 @@
+<ion-nav-bar class="nav-bar">
+            <ion-nav-buttons><button ng-show="true" class="btn-right" ui-sref="add"><i class="ion-plus-round"></i></button></ion-nav-buttons>
+</ion-nav-bar>
+
+<ion-view ng-show="{{$ctrl.list.length > 0}}" view-title="List">
+  <ion-list>
+    <ion-item>
+      <div class="row" ng-repeat="item in $ctrl.list track by $index" ng-if="$index % 2 === 0">
+      <div class="col col-50" ng-if="$index < $ctrl.list.length">
+                  <img ng-src="{{item}}" width="100%" />
+              </div>
+              <div class="col col-50" ng-if="$index + 1 < $ctrl.list.length">
+                  <img ng-src="{{item}}" width="100%" />
+              </div>
+
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-view>
+
+<ion-view ng-show="{{$ctrl.list.length == 0}}" view-title="List">
+
+  <div class="table-contain">
+   <div class="rectangle"><h2>Add Image</h2></div>
+      <div class="center-block">
+        <button class="add-image" ui-sref="add">+</button>
+      </div>
+
+  </div>
+
+</ion-view>
+
