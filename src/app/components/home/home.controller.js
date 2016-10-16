@@ -1,6 +1,9 @@
 class HomeController {
   constructor($cordovaGeolocation) {
     'ngInject';
+
+    this.name = "HomeController";
+
     var posOptions = {timeout: 1000, enableHighAccuracy: false};
     function getLocation() {
       $cordovaGeolocation
