@@ -9,7 +9,7 @@ import runBlock from './index.run';
 import PhotolistController from './locations/photolist/photolist.controller.js';
 import PhotolistConfig from './locations/photolist/photolist.config.js';
 
-angular.module('ShareMobile', ['ionic', 'ui.router'])
+angular.module('ShareMobile', ['ionic', 'ui.router', 'ngCordova'])
     .constant('AppConstants', constants)
 
     .config(config)
