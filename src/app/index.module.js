@@ -17,4 +17,4 @@ angular.module('ShareMobile', ['ionic', 'ui.router', 'ngCordova'])
     .config(HomeConfig)
     .run(runBlock)
 
-    .controller('PhotolistController', HomeController);
+    .controller('HomeController', HomeController);
