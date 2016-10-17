@@ -1,5 +1,5 @@
 class HomeController {
-  constructor($cordovaGeolocation,$cordovaCamera) {
+  constructor($cordovaGeolocation,$cordovaCamera,$ionicPlatform) {
     'ngInject';
 
     this.name = "HomeController";
@@ -9,7 +9,8 @@ class HomeController {
     this.images = [];
 
     this.addImage = function() {
-      document.addEventListener("deviceready", function () {
+      console.log('test',$ionicPlatform)
+      $ionicPlatform.ready(function () {
 
           var options = {
             quality: 50,
@@ -33,7 +34,7 @@ class HomeController {
 
         }, false);
 
-    }
+    };
 
     var posOptions = {timeout: 1000, enableHighAccuracy: false};
     function getLocation() {
