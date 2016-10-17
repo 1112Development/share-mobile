@@ -10,5 +10,5 @@ angular.module('ShareMobile', ['ionic', 'ui.router', 'ngCordova',Controllers.nam
     .config(config)
     .config(routerConfig)
     .config(HomeConfig)
-    .run(runBlock)
+    .run(runBlock);
 
