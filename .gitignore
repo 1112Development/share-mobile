@@ -7,3 +7,4 @@ dist/
 www/
 .DS_Store
 plugins/
+platforms/
