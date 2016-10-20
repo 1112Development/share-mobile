@@ -1,5 +1,5 @@
 const AppConstants = {
-    api: 'http://localhost:8000/api',
+    api: 'http://share-api.herokuapp.com/api/',
     jwtKey: 'jwtToken',
     appName: 'Share-Mobile',
     production: false,

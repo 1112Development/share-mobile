@@ -6,7 +6,7 @@ import HomeConfig from './components/home/home.config';
 import Controllers from './index.controller';
 import Mixpanel from './services/mixpanel.service'
 import Location from './services/location.service'
-import Camera from './services/camera.service'
+import Photos from './services/photos.service'
 
 
 angular.module('ShareMobile', ['ionic', 'ui.router', 'ngCordova',Controllers.name])
@@ -16,7 +16,7 @@ angular.module('ShareMobile', ['ionic', 'ui.router', 'ngCordova',Controllers.nam
     .config(HomeConfig)
     .service('Mixpanel', Mixpanel)
     .service('Location', Location)
-    .service('Camera', Camera)
+    .service('Photos', Photos)
 
   .run(runBlock);
 
