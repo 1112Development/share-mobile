@@ -1,5 +1,5 @@
 class HomeController {
-  constructor($ionicPlatform, Mixpanel, Location, Camera) {
+  constructor($ionicPlatform, Mixpanel, Location, Camera, AppConstants) {
     'ngInject';
 
     this.name = "HomeController";
@@ -9,17 +9,23 @@ class HomeController {
 
     this.list = [];
     this.images = [];
-
-    Mixpanel.trackLoad();
+    if (AppConstants.production){
+      Mixpanel.trackLoad();
+    }
 
     this._Location.setLocation();
     console.log('Where Am I?', this._Location.getLocation());
   }
 
-
   addImage() {
-    console.log('test', this._$ionicPlatform);
-    this._Camera.takePhoto()
-  }
+  this._Camera.takePhoto().then(function(imageURI) {
+    // save to object
+    console.log(imageURI);
+  }, function(err) {
+    console.err(err);
+  });
+};
+
+
 }
   export default HomeController;

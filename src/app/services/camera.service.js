@@ -1,37 +1,39 @@
 export default class Location {
-  constructor($cordovaCamera, $ionicPlatform) {
+  constructor($cordovaCamera, $ionicPlatform, $q) {
     'ngInject';
+    this._$q = $q;
     this._$ionicPlatform = $ionicPlatform;
     this._$cordovaCamera = $cordovaCamera;
     this._posOptions = {timeout: 1000, enableHighAccuracy: false};
   }
 
-  takePhoto() {
-    console.log('test', this._$ionicPlatform);
-    this._$ionicPlatform.ready(() => {
+  takePhoto () {
+    var q = this._$q.defer();
+    var _picker = false;
+    var source = 'camera';
+    if (source === 'camera') {
+      _picker = true;
+    }
 
-      var options = {
-        quality: 50,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: false,
-        encodingType: Camera.EncodingType.JPEG,
-        // targetWidth: 100,
-        // targetHeight: 100,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true,
-        correctOrientation: true
-      };
+    var _camera = Camera.PictureSourceType.CAMERA;
+    var _photoLibary = Camera.PictureSourceType.PHOTOLIBRAY;
 
-      this._$cordovaCamera.getPicture(options).then(function (imageData) {
-        var image = document.getElementById('myImage');
-        image.src = "data:image/jpeg;base64," + imageData;
-      }, function (err) {
-        // error
-      });
-
-    }, false);
-
+    var options = {
+      quality: 100,
+      allowEdit: false,
+      correctOrientation: false,
+      // targetWidth: 600,
+      // targetHeight: 600,
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: _picker ? _camera : _photoLibary,
+      encodingType: Camera.EncodingType.JPEG,
+      saveToPhotoAlbum: true
+    };
+    this._$cordovaCamera.getPicture(options).then(function (imageData) {
+      q.resolve(imageData);
+    }, function (err) {
+      q.reject(err);
+    });
+    return q.promise;
   };
-
 }
