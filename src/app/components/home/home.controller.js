@@ -1,5 +1,5 @@
 class HomeController {
-  constructor(images, $ionicPlatform, $http, Photos, AppConstants, Mixpanel) {
+  constructor(images, $ionicPlatform, $http, Photos, AppConstants, Location, Mixpanel) {
     'ngInject';
 
     this.name = "HomeController";
@@ -19,9 +19,11 @@ class HomeController {
 
   addImage(source) {
     // Take The photo
-  this._Photos.newPhoto(source).then(function(imageURI) {
+  this._Photos.newPhoto(source).then((imageURI) => {
     // save to object ** In Progress
-    console.log(imageURI);
+    this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>
+    console.log(res)
+    );
     // add image to image list ** Next (or just re-retrive the image list?/)
     // var image = document.getElementById('myImage');
     // image.src = "data:image/jpeg;base64," + imageData;

@@ -1,11 +1,12 @@
 export default class Photos {
-  constructor($http, $q, $cordovaCamera, $ionicPlatform, AppConstants) {
+  constructor($http, $q, $cordovaCamera, $ionicPlatform, $cordovaFileTransfer, AppConstants) {
     'ngInject';
 
     this._$http = $http;
     this._$q = $q;
     this._$cordovaCamera = $cordovaCamera;
     this._$ionicPlatform = $ionicPlatform;
+    this._$cordovaFileTransfer = $cordovaFileTransfer;
     this._AppConstants = AppConstants
 
   }
@@ -13,8 +14,6 @@ export default class Photos {
 
   // Get list of photos from the api, takes a location object.
   getPhotos (location) {
-    console.log(location);
-
     // convert the location object to URL params
     let URILocation = 'lat=' + encodeURIComponent(location.lat) + '&' +'long=' + encodeURIComponent(location.long);
 
@@ -60,4 +59,29 @@ export default class Photos {
     });
     return q.promise;
   };
+
+
+  uploadPhoto (photoURI, location) {
+  // I don't know if we need the $q and defer here....?
+    let q = this._$q.defer();
+    let serverURL = this._AppConstants.api + 'photos/';
+
+    var options = new FileUploadOptions();
+    options.chunkedMode = false;
+    options.mimeType = "image/jpeg";
+    options.fileKey = 'original';
+    // extra fields
+    options.params = {};
+    options.params.lat = location.lat;
+    options.params.long = location.long;
+
+    this._$cordovaFileTransfer.upload(encodeURI('serverURL'), photoURI, options).then(function (data) {
+      q.resolve(data);
+    }, function (err) {
+      console.log(err);
+      q.reject(err);
+    });
+    return q.promise;
+
+  }
 }
