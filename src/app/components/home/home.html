@@ -1,5 +1,5 @@
 <ion-nav-bar class="nav-bar">
-            <ion-nav-buttons><button ng-show="true" class="btn-right" ng-click="$ctrl.testList()"><i class="ion-plus-round"></i></button></ion-nav-buttons>
+            <ion-nav-buttons><button ng-show="true" class="btn-right" ng-click="$ctrl.toggleModal('show')"><i class="ion-plus-round"></i></button></ion-nav-buttons>
 </ion-nav-bar>
 
 <ion-view ng-show="{{$ctrl.list.length > 0}}" view-title="List">
@@ -26,7 +26,7 @@
       <img id="myImage"/>
 
       <div class="center-block">
-        <button class="add-image" ng-click="$ctrl.addImage('camera')">+</button>
+        <button class="add-image" ng-click="$ctrl.toggleModal('show')">+</button>
       </div>
 
       <ion-scroll>
@@ -37,4 +37,16 @@
 
 
 </ion-view>
+
+<ion-modal-view ng-show="$ctrl.modalState">
+    <ion-header-bar>
+      <h1 class="title">My Modal title</h1>
+      <button ng-click="$ctrl.toggleModal('hide')">Hide</button>
+    </ion-header-bar>
+    <ion-content>
+    <button ng-click="$ctrl.addImage('camera')">Take Picture</button>
+    <button ng-click="$ctrl.addImage('file')">From Gallery</button>
+    
+    </ion-content>
+</ion-modal-view>
 

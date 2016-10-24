@@ -58,6 +58,7 @@ export default class Photos {
     }, function (err) {
       q.reject(err);
     });
+
     return q.promise;
   };
 
@@ -66,6 +67,8 @@ export default class Photos {
   // I don't know if we need the $q and defer here....?
     let q = this._$q.defer();
     let serverURL = this._AppConstants.api + 'photos/';
+
+    console.log('at upload',photoURI,location)
 
     var options = new FileUploadOptions();
     options.chunkedMode = false;

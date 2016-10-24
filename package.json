@@ -5,7 +5,8 @@
     "mixpanel-browser": "^2.9.16"
   },
   "scripts": {
-    "test": "gulp test"
+    "test":"gulp test",
+    "build":"gulp build && ionic build && ionic run ios --device"
   },
   "devDependencies": {
     "babel-core": "^6.7.4",
