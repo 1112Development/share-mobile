@@ -69,12 +69,17 @@ export default class Photos {
 
     var options = new FileUploadOptions();
     options.chunkedMode = false;
-    options.mimeType = "image/jpeg";
     options.fileKey = 'original';
+    // options.headers = {
+    //   'Connection': 'close'
+    // };
     // extra fields
-    options.params = {};
-    options.params.lat = location.lat;
-    options.params.long = location.long;
+    options.params = {
+      'lat': location.lat,
+      'long': location.long,
+      'Content-Type': 'image/jpeg',
+    };
+
 
     this._$cordovaFileTransfer.upload(encodeURI(serverURL), photoURI, options).then(function (data) {
       q.resolve(data);
