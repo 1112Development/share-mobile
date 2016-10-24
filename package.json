@@ -1,7 +1,9 @@
 {
   "name": "ShareMobile",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "mixpanel-browser": "^2.9.16"
+  },
   "scripts": {
     "test": "gulp test"
   },
