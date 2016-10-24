@@ -76,7 +76,7 @@ export default class Photos {
     options.params.lat = location.lat;
     options.params.long = location.long;
 
-    this._$cordovaFileTransfer.upload(encodeURI('serverURL'), photoURI, options).then(function (data) {
+    this._$cordovaFileTransfer.upload(encodeURI(serverURL), photoURI, options).then(function (data) {
       q.resolve(data);
     }, function (err) {
       console.log(err);
