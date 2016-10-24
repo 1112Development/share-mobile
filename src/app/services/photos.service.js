@@ -37,8 +37,9 @@ export default class Photos {
       _picker = true;
     }
 
+    console.log('it happened');
     var _camera = Camera.PictureSourceType.CAMERA;
-    var _photoLibary = Camera.PictureSourceType.PHOTOLIBRAY;
+    var _photoLibary = Camera.PictureSourceType.PHOTOLIBRARY;
 
     var options = {
       quality: 100,
