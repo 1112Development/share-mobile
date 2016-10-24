@@ -23,7 +23,9 @@
   <div class="table-contain">
    <div class="rectangle"><h2>test</h2></div>
 
-      <img id="myImage"/>
+      <div id="myImage">
+        <img src="{{$ctrl.URI.src}}"/>
+      </div>
 
       <div class="center-block">
         <button class="add-image" ng-click="$ctrl.toggleModal('show')">+</button>
