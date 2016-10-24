@@ -1,5 +1,11 @@
 <ion-nav-bar class="nav-bar">
-            <ion-nav-buttons><button ng-show="true" class="btn-right" ng-click="$ctrl.toggleModal('show')"><i class="ion-plus-round"></i></button></ion-nav-buttons>
+            <ion-nav-buttons>
+              <button ng-hide="$ctrl.photoExists" class="btn-right" ng-click="$ctrl.toggleModal('show')">
+                <i class="ion-plus-round"></i>
+              </button>
+              <button ng-show="$ctrl.photoExists" class="btn-left" ng-click="$ctrl.cancelImage()"><i class="ion-close"></i></button>
+              <button ng-show="$ctrl.photoExists" class="btn-right"><i class="ion-checkmark"></i></button>
+            </ion-nav-buttons>
 </ion-nav-bar>
 
 <ion-view ng-show="{{$ctrl.list.length > 0}}" view-title="List">
@@ -23,7 +29,7 @@
   <div class="table-contain">
    <div class="rectangle"><h2>test</h2></div>
 
-      <div id="myImage">
+      <div id="myImage" ng-show="$ctrl.photoExists">
         <img src="{{$ctrl.URI.src}}"/>
       </div>
 
