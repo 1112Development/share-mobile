@@ -13,16 +13,25 @@ class HomeController {
     }
 
     this.list = [];
+    this.modalState = false;
 
-    console.log('images', images);
+    this.toggleModal = (view) => {
+      this.modalState =  view === 'show' ? true : false;
+    }
+
   }
 
+
+
   addImage(source) {
+    //hides modal
+    this.modalState = false;
     // Take The photo
   this._Photos.newPhoto(source).then((imageURI) => {
+    
     // save to object ** In Progress
     this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>
-    console.log(res)
+    console.log('resolution',res)
     );
     // add image to image list ** Next (or just re-retrive the image list?/)
     // var image = document.getElementById('myImage');
