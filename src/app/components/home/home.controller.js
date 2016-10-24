@@ -14,6 +14,7 @@ class HomeController {
 
     this.list = [];
     this.modalState = false;
+    this.URI = "";
 
     this.toggleModal = (view) => {
       this.modalState =  view === 'show' ? true : false;
@@ -21,27 +22,33 @@ class HomeController {
 
   }
 
-
-
   addImage(source) {
     //hides modal
     this.modalState = false;
     // Take The photo
   this._Photos.newPhoto(source).then((imageURI) => {
-    
+    console.log('wtf!!!')
+    this.URI = this._Photos.toDataUrl(imageURI,function(base64img){
+        return base64img;
+    });
+
     // save to object ** In Progress
-    this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>
-    console.log('resolution',res)
-    );
-    // add image to image list ** Next (or just re-retrive the image list?/)
-    // var image = document.getElementById('myImage');
-    // image.src = "data:image/jpeg;base64," + imageData;
+
+   
+    // image.src = "data:image/jpeg;base64," + this.URI.src;
 
   }, function(err) {
     console.err(err);
   });
 };
 
+  
+
+  upload() {
+    this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>
+    console.log('resolution',res)
+    );
+  }
   testList() {
     this._Photos.getPhotos().then((res) => console.log(res))
   }
