@@ -1,21 +1,24 @@
 class HomeController {
   constructor(images, $ionicPlatform, $http, Photos, AppConstants, Location, Mixpanel) {
     'ngInject';
-
+    // Aliases
     this.name = "HomeController";
     this._$ionicPlatform = $ionicPlatform;
     this._$http = $http;
     this._Location = Location;
     this._Photos = Photos;
 
-    if (AppConstants.production){
-      Mixpanel.trackLoad();
-    }
-
+    // Var
     this.list = [];
     this.modalState = false;
     this.URI = "";
     this.photoExists = false;
+
+    //On Load Functions
+    if (AppConstants.production){
+      Mixpanel.trackLoad();
+    }
+
   }
 
   cancelImage() {
@@ -41,7 +44,6 @@ class HomeController {
       console.err(err);
     });
   }
-
 
   upload() {
     this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>
