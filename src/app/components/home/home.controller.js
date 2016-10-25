@@ -16,42 +16,32 @@ class HomeController {
     this.modalState = false;
     this.URI = "";
     this.photoExists = false;
-
-    this.toggleModal = (view) => {
-      this.modalState =  view === 'show' ? true : false;
-    }
-
-    this.cancelImage = () => {
-      this.photoExists = false;
-      this.URI = "";
-    }
-
-    this.addImage = (source) => {
-        //hides modal
-        this.modalState = false;
-        
-        // Take The photo
-        this._Photos.newPhoto(source).then((imageURI) => {
-        
-        this.URI = this._Photos.toDataUrl(imageURI,function(base64img){
-            return base64img;
-        });
-
-        this.photoExists = true;
-
-        
-
-
-      }, function(err) {
-        console.err(err);
-      });
-    }
-
   }
 
+  cancelImage() {
+    this.photoExists = false;
+    this.URI = "";
+  };
 
+  toggleModal(view) {
+    this.modalState = view === 'show';
+  };
 
-  
+  addImage(source) {
+    //hides modal
+    this.modalState = false;
+    // Take The photo
+    this._Photos.newPhoto(source).then((imageURI) => {
+
+      this.photoExists = true;
+      this.URI = imageURI;
+      this.photoExists = true;
+
+    }, function(err) {
+      console.err(err);
+    });
+  }
+
 
   upload() {
     this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>

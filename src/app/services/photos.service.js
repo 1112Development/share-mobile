@@ -36,8 +36,6 @@ export default class Photos {
     if (source === 'camera') {
       _picker = true;
     }
-
-    console.log('it happened');
     var _camera = Camera.PictureSourceType.CAMERA;
     var _photoLibary = Camera.PictureSourceType.PHOTOLIBRARY;
 
@@ -54,7 +52,11 @@ export default class Photos {
     };
 
     this._$cordovaCamera.getPicture(options).then(function (imageData) {
-      console.log('at get pic',imageData)
+      // Fix for old android versions until Cordova 3.5.0
+      if (imageData.substring(0,21)=="content://com.android") {
+        var photo_split = imageData.split("%3A");
+        imageData = "content://media/external/images/media/"+photo_split[1];
+      }
       q.resolve(imageData);
     }, function (err) {
       q.reject(err);
@@ -68,8 +70,6 @@ export default class Photos {
   // I don't know if we need the $q and defer here....?
     let q = this._$q.defer();
     let serverURL = this._AppConstants.api + 'photos/';
-
-    console.log('at upload',photoURI,location)
 
     var options = new FileUploadOptions();
     options.chunkedMode = false;
@@ -95,25 +95,25 @@ export default class Photos {
 
   }
 
-  toDataUrl(src, callback, outputFormat) {
-      var img = new Image();
-      img.crossOrigin = 'Anonymous';
-      img.onload = function() {
-        var canvas = document.createElement('CANVAS');
-        var ctx = canvas.getContext('2d');
-        var dataURL;
-        canvas.height = this.height;
-        canvas.width = this.width;
-        ctx.drawImage(this, 0, 0);
-        dataURL = canvas.toDataURL(outputFormat);
-        callback(dataURL);
-      };
-      img.src = src;
-      if (img.complete || img.complete === undefined) {
-        img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-        img.src = src;
-      }
-
-      return img;
-    }
+  // toDataUrl(src, callback, outputFormat) {
+  //     var img = new Image();
+  //     img.crossOrigin = 'Anonymous';
+  //     img.onload = function() {
+  //       var canvas = document.createElement('CANVAS');
+  //       var ctx = canvas.getContext('2d');
+  //       var dataURL;
+  //       canvas.height = this.height;
+  //       canvas.width = this.width;
+  //       ctx.drawImage(this, 0, 0);
+  //       dataURL = canvas.toDataURL(outputFormat);
+  //       callback(dataURL);
+  //     };
+  //     img.src = src;
+  //     if (img.complete || img.complete === undefined) {
+  //       img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+  //       img.src = src;
+  //     }
+  //
+  //     return img;
+  //   }
 }

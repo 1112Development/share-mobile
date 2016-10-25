@@ -30,7 +30,7 @@
    <div class="rectangle"><h2>test</h2></div>
 
       <div id="myImage" ng-show="$ctrl.photoExists">
-        <img src="{{$ctrl.URI.src}}"/>
+        <img src="{{$ctrl.URI}}"/>
       </div>
 
       <div class="center-block">
@@ -54,7 +54,7 @@
     <ion-content>
     <button ng-click="$ctrl.addImage('camera')">Take Picture</button>
     <button ng-click="$ctrl.addImage('file')">From Gallery</button>
-    
+
     </ion-content>
 </ion-modal-view>
 
