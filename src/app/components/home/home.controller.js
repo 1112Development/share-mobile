@@ -1,5 +1,5 @@
 class HomeController {
-  constructor($ionicPlatform, $http, Photos, AppConstants, Location, Mixpanel) {
+  constructor($ionicPlatform, $http,images, Photos, AppConstants, Location, Mixpanel) {
     'ngInject';
 
     this.name = "HomeController";
@@ -16,6 +16,7 @@ class HomeController {
     this.modalState = false;
     this.URI = "";
     this.photoExists = false;
+    this.images = images
   }
 
   cancelImage() {
