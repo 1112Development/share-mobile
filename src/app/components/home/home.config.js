@@ -13,7 +13,7 @@ function HomeConfig($stateProvider) {
       resolve: {
         images: function (Photos, Location) {
           // get the users location and use that location to get the photo list
-          return Photos.getPhotos(Location.setLocation()).then((images) => images)
+          return Photos.getPhotos(Location.setLocation()).then((images) => images);
         }
       }
     });

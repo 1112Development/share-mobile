@@ -4,9 +4,9 @@ import routerConfig from './index.route';
 import runBlock from './index.run';
 import HomeConfig from './components/home/home.config';
 import Controllers from './index.controller';
-import Mixpanel from './services/mixpanel.service'
-import Location from './services/location.service'
-import Photos from './services/photos.service'
+import Mixpanel from './services/mixpanel.service';
+import Location from './services/location.service';
+import Photos from './services/photos.service';
 
 
 angular.module('ShareMobile', ['ionic', 'ui.router', 'ngCordova',Controllers.name])

@@ -1,5 +1,5 @@
 class HomeController {
-  constructor(images, $ionicPlatform, $http, Photos, AppConstants, Location, Mixpanel) {
+  constructor($ionicPlatform, $http, Photos, AppConstants, Location, Mixpanel) {
     'ngInject';
 
     this.name = "HomeController";
@@ -21,11 +21,11 @@ class HomeController {
   cancelImage() {
     this.photoExists = false;
     this.URI = "";
-  };
+  }
 
   toggleModal(view) {
     this.modalState = view === 'show';
-  };
+  }
 
   addImage(source) {
     //hides modal
@@ -49,7 +49,7 @@ class HomeController {
     );
   }
   testList() {
-    this._Photos.getPhotos().then((res) => console.log(res))
+    this._Photos.getPhotos().then((res) => console.log(res));
   }
 
 }

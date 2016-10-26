@@ -7,7 +7,7 @@ export default class Photos {
     this._$cordovaCamera = $cordovaCamera;
     this._$ionicPlatform = $ionicPlatform;
     this._$cordovaFileTransfer = $cordovaFileTransfer;
-    this._AppConstants = AppConstants
+    this._AppConstants = AppConstants;
 
   }
 
@@ -63,7 +63,7 @@ export default class Photos {
     });
 
     return q.promise;
-  };
+  }
 
 
   uploadPhoto (photoURI, location) {

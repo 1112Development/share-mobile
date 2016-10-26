@@ -13,6 +13,6 @@ export default class Mixpanel {
     this._$ionicPlatform.ready( () => {
       var device = this._$cordovaDevice.getDevice();
       this.mixpanel.track("Loaded Homepage", {'device': device});
-    })
+    });
   }
 }
