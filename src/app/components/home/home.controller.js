@@ -16,7 +16,8 @@ class HomeController {
     this.modalState = false;
     this.URI = "";
     this.photoExists = false;
-    this.images = images
+    this.images = images;
+
   }
 
   cancelImage() {
@@ -44,10 +45,11 @@ class HomeController {
   }
 
 
-  upload() {
+  upload(imageURI) {
+    this.URI = ""
     this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>
-    console.log('resolution',res)
-    );
+        console.log('fuck')
+    )
   }
   testList() {
     this._Photos.getPhotos().then((res) => console.log(res));

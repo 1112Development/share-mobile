@@ -37,7 +37,7 @@ export default class Photos {
       _picker = true;
     }
     var _camera = Camera.PictureSourceType.CAMERA;
-    var _photoLibary = Camera.PictureSourceType.PHOTOLIBRARY;
+    var _photoLibrary = Camera.PictureSourceType.PHOTOLIBRARY;
 
     var options = {
       quality: 100,
@@ -46,9 +46,9 @@ export default class Photos {
       // targetWidth: 600,
       // targetHeight: 600,
       destinationType: Camera.DestinationType.FILE_URI,
-      sourceType: _picker ? _camera : _photoLibary,
+      sourceType: _picker ? _camera : _photoLibrary,
       encodingType: Camera.EncodingType.JPEG,
-      saveToPhotoAlbum: true
+      saveToPhotoAlbum:_picker ? true : false
     };
 
     this._$cordovaCamera.getPicture(options).then(function (imageData) {

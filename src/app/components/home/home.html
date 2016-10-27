@@ -3,20 +3,18 @@
               <button ng-hide="$ctrl.photoExists" class="btn-right" ng-click="$ctrl.toggleModal('show')">
                 <i class="ion-plus-round"></i>
               </button>
-              <button ng-show="$ctrl.photoExists" class="btn-left" ng-click="$ctrl.cancelImage()"><i class="ion-close"></i></button>
-              <button ng-show="$ctrl.photoExists" class="btn-right"><i class="ion-checkmark"></i></button>
             </ion-nav-buttons>
 </ion-nav-bar>
 
-<ion-view ng-show="{{$ctrl.list.length > 0}}" view-title="List">
+<ion-view ng-show="{{$ctrl.images.length > 0}}" view-title="List">
   <ion-list>
     <ion-item>
-      <div class="row" ng-repeat="item in $ctrl.list track by $index" ng-if="$index % 2 === 0">
-      <div class="col col-50" ng-if="$index < $ctrl.list.length">
-                  <img ng-src="{{item}}" width="100%" />
+      <div class="row" ng-repeat="item in $ctrl.images track by $index" ng-if="$index % 2 === 0">
+      <div class="col col-50" ng-if="$index < $ctrl.images.length">
+                  <img ng-src="{{item.thumbnail}}" width="100%" />
               </div>
-              <div class="col col-50" ng-if="$index + 1 < $ctrl.list.length">
-                  <img ng-src="{{item}}" width="100%" />
+              <div class="col col-50" ng-if="$index + 1 < $ctrl.images.length">
+                  <img ng-src="{{item.thumbnail}}" width="100%" />
               </div>
 
       </div>
@@ -24,7 +22,7 @@
   </ion-list>
 </ion-view>
 
-<ion-view ng-show="{{$ctrl.list.length == 0}}" view-title="List">
+<ion-view ng-show="{{$ctrl.images.length == 0}}" view-title="List">
 
   <div class="table-contain">
    <div class="rectangle"><h2>test</h2></div>
@@ -36,14 +34,6 @@
       <div class="center-block">
         <button class="add-image" ng-click="$ctrl.toggleModal('show')">+</button>
       </div>
-
-      <ion-scroll>
-    <div ng-repeat="image in $ctrl.images">
-      {{image.original}}
-      <img height="100px" ng-src="{{image.thumbnail}}"/>
-      </div>
-  </ion-scroll>
-
   </div>
 
 
@@ -57,7 +47,12 @@
     <ion-content>
     <button ng-click="$ctrl.addImage('camera')">Take Picture</button>
     <button ng-click="$ctrl.addImage('file')">From Gallery</button>
+  </ion-content>
+</ion-modal-view>
 
-    </ion-content>
+<ion-modal-view ng-show="$ctrl.URI">
+  <button class="button btn-left" ng-click="$ctrl.cancelImage()"><i class="ion-close"></i></button>
+  <button class="button btn-right" ng-click="$ctrl.upload($ctrl.URI)"><i class="ion-checkmark"></i></button>
+  <img src="{{$ctrl.URI}}"/>
 </ion-modal-view>
 
