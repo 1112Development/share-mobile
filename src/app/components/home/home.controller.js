@@ -20,6 +20,10 @@ class HomeController {
 
   }
 
+  getThumbnail(public_id) {
+    return this._Photos.getThumbnail(public_id);
+  }
+
   cancelImage() {
     this.photoExists = false;
     this.URI = "";
@@ -44,12 +48,11 @@ class HomeController {
     });
   }
 
-
   upload(imageURI) {
     this.URI = ""
     this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>
-        console.log('fuck')
-    )
+      console.log('resolution', res)
+    );
   }
   testList() {
     this._Photos.getPhotos().then((res) => console.log(res));

@@ -1,5 +1,5 @@
 export default class Photos {
-  constructor($http, $q, $cordovaCamera, $ionicPlatform, $cordovaFileTransfer, AppConstants) {
+  constructor($http, $q, $cordovaCamera, $ionicPlatform, $cordovaFileTransfer, $cordovaDevice, AppConstants) {
     'ngInject';
 
     this._$http = $http;
@@ -7,6 +7,7 @@ export default class Photos {
     this._$cordovaCamera = $cordovaCamera;
     this._$ionicPlatform = $ionicPlatform;
     this._$cordovaFileTransfer = $cordovaFileTransfer;
+    this._$cordovaDevice = $cordovaDevice
     this._AppConstants = AppConstants;
 
   }
@@ -28,6 +29,12 @@ export default class Photos {
     return deferred.promise;
   }
 
+  // Create thumbnail URL
+  getThumbnail(public_id, height = '150', width = '100') {
+    let cloudinaryURL = 'http://res.cloudinary.com/hidfratev/';
+    let translation = 'c_fit%2Ch_' + height + '%2Cw_' + width + '/';
+    return cloudinaryURL + translation + public_id
+  }
 
   // Gets an image from Camera or the photo Library, returns photo's storage location
   newPhoto (source) {
@@ -73,7 +80,7 @@ export default class Photos {
 
     var options = new FileUploadOptions();
     options.chunkedMode = false;
-    options.fileKey = 'original';
+    options.fileKey = 'image';
     // options.headers = {
     //   'Connection': 'close'
     // };
@@ -82,6 +89,7 @@ export default class Photos {
       'lat': location.lat,
       'long': location.long,
       'Content-Type': 'image/jpeg',
+      'device': this._$cordovaDevice.getDevice()
     };
 
 
