@@ -1,0 +1,20 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Share an Image</h1>
+    <button ng-click="$ctrl.closeModal('upload')">Hide</button>
+  </ion-header-bar>
+  <ion-content>
+
+    <!--need a square placeholder here for the image-->
+
+    <button ng-click="$ctrl.addImage('camera')">Take Picture</button>
+    <button ng-click="$ctrl.addImage('file')">From Gallery</button>
+  </ion-content>
+</ion-modal-view>
+
+<ion-modal-view ng-show="$ctrl.URI">
+  <button class="button btn-left" ng-click="$ctrl.cancelImage()"><i class="ion-close"></i></button>
+  <button class="button btn-right" ng-click="$ctrl.upload($ctrl.URI)"><i class="ion-checkmark"></i></button>
+  <img ng-src="{{$ctrl.URI}}"/>
+</ion-modal-view>
+

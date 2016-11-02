@@ -1,24 +1,43 @@
 class HomeController {
-  constructor($ionicPlatform, $http,images, Photos, AppConstants, Location, Mixpanel) {
+  constructor($ionicPlatform, $ionicModal, $scope, $http, images, Photos, AppConstants, Location, Mixpanel) {
     'ngInject';
-
     this.name = "HomeController";
     this._$ionicPlatform = $ionicPlatform;
+    this._$scope = $scope;
     this._$http = $http;
     this._Location = Location;
     this._Photos = Photos;
 
+    // Mixpanel Event
     if (AppConstants.production){
       Mixpanel.trackLoad();
     }
 
-    this.list = [];
-    this.modalState = false;
+    // Upload Modal
+    $ionicModal.fromTemplateUrl('app/components/modals/upload.html', {
+      id: '1',
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      console.log('here3');
+      $scope.oModal1 = modal;
+    });
+
+    // variables
     this.URI = "";
     this.photoExists = false;
     this.images = images;
-
   }
+
+  openModal(modal) {
+    if (modal == 'upload') this._$scope.oModal1.show();
+    else this._$scope.oModal2.show();
+  };
+
+  closeModal(modal) {
+    if (modal == 'upload') this._$scope.oModal1.hide();
+    else this._$scope.oModal2.hide();
+  };
 
   getThumbnail(public_id) {
     return this._Photos.getThumbnail(public_id);
@@ -29,13 +48,9 @@ class HomeController {
     this.URI = "";
   }
 
-  toggleModal(view) {
-    this.modalState = view === 'show';
-  }
-
   addImage(source) {
     //hides modal
-    this.modalState = false;
+    this.UploadModal = false;
     // Take The photo
     this._Photos.newPhoto(source).then((imageURI) => {
 
