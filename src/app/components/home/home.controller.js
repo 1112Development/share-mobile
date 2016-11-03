@@ -19,14 +19,27 @@ class HomeController {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function (modal) {
-      console.log('here3');
       $scope.oModal1 = modal;
+    });
+
+    // Preview Modal
+    $ionicModal.fromTemplateUrl('app/components/modals/download.html', {
+      id: '2',
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.oModal2 = modal;
     });
 
     // variables
     this.URI = "";
     this.photoExists = false;
     this.images = images;
+  }
+
+  viewPreview(public_id) {
+    this.URI = this._Photos.getImage(public_id, 'preview');
+    this.openModal('preview')
   }
 
   openModal(modal) {
@@ -40,7 +53,11 @@ class HomeController {
   };
 
   getThumbnail(public_id) {
-    return this._Photos.getThumbnail(public_id);
+    return this._Photos.getImage(public_id, 'thumbnail');
+  }
+
+  getPreview(public_id) {
+    return this._Photos.getImage(public_id, 'preview');
   }
 
   cancelImage() {

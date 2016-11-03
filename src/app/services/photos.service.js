@@ -30,7 +30,14 @@ export default class Photos {
   }
 
   // Create thumbnail URL
-  getThumbnail(public_id, height = '150', width = '100') {
+  getImage(public_id, size) {
+    if (size == 'thumbnail') {
+      var height = '150';
+      var width = '100';
+    } else {
+      var height = '400';
+      var width = '300';
+    }
     let cloudinaryURL = 'http://res.cloudinary.com/hidfratev/';
     let translation = 'c_fit%2Ch_' + height + '%2Cw_' + width + '/';
     return cloudinaryURL + translation + public_id

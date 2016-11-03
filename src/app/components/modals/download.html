@@ -1,0 +1,12 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Download an Image</h1>
+    <button ng-click="$ctrl.closeModal('download')">Hide</button>
+  </ion-header-bar>
+  <ion-content>
+
+    <img ng-src="{{$ctrl.URI}}"/>
+
+    <button ng-click="$ctrl.addImage('camera')">Download This Image</button>
+  </ion-content>
+</ion-modal-view>

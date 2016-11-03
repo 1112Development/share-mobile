@@ -13,10 +13,11 @@
     <ion-item>
       <div class="row" ng-repeat="item in $ctrl.images track by $index" ng-if="$index % 2 === 0">
       <div class="col col-50" ng-if="$index < $ctrl.images.length">
-        <img ng-src="{{$ctrl.getThumbnail(item.image.public_id)}}"/>
+        <img ng-src="{{$ctrl.getThumbnail(item.image.public_id)}}" ng-click="$ctrl.viewPreview(item.image.public_id)"/>
               </div>
               <div class="col col-50" ng-if="$index + 1 < $ctrl.images.length">
-                <img ng-src="{{$ctrl.getThumbnail(item.image.public_id)}}"/>
+                <img ng-src="{{$ctrl.getThumbnail(item.image.public_id)}}"
+                     ng-click="$ctrl.viewPreview(item.image.public_id)"/>
               </div>
 
       </div>
