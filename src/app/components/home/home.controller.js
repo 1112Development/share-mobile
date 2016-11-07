@@ -86,6 +86,11 @@ class HomeController {
       console.log('resolution', res)
     );
   }
+
+  download(imageURI) {
+    this._Photos.downloadPhoto(imageURI);
+  }
+
   testList() {
     this._Photos.getPhotos().then((res) => console.log(res));
   }

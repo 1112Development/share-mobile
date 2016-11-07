@@ -98,8 +98,7 @@ export default class Photos {
       'Content-Type': 'image/jpeg',
       'device': this._$cordovaDevice.getDevice()
     };
-
-
+    
     this._$cordovaFileTransfer.upload(encodeURI(serverURL), photoURI, options).then(function (data) {
       q.resolve(data);
     }, function (err) {
@@ -109,26 +108,14 @@ export default class Photos {
     return q.promise;
 
   }
-
-  // toDataUrl(src, callback, outputFormat) {
-  //     var img = new Image();
-  //     img.crossOrigin = 'Anonymous';
-  //     img.onload = function() {
-  //       var canvas = document.createElement('CANVAS');
-  //       var ctx = canvas.getContext('2d');
-  //       var dataURL;
-  //       canvas.height = this.height;
-  //       canvas.width = this.width;
-  //       ctx.drawImage(this, 0, 0);
-  //       dataURL = canvas.toDataURL(outputFormat);
-  //       callback(dataURL);
-  //     };
-  //     img.src = src;
-  //     if (img.complete || img.complete === undefined) {
-  //       img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-  //       img.src = src;
-  //     }
-  //
-  //     return img;
-  //   }
+  
+  downloadPhoto(photoURI) {
+    let url = photoURI;
+    var album = 'Share';
+    cordova.plugins.photoLibrary.saveImage(
+      url, 
+      album, 
+      function (success) {console.log('success',success)},
+      function (err) {console.log('error',err)});
+  }
 }
