@@ -1,15 +1,22 @@
 <!--Header Bar-->
 <ion-nav-bar class="nav-bar">
             <ion-nav-buttons>
-              <button ng-hide="$ctrl.photoExists" class="btn-right" ng-click="$ctrl.openModal('upload')">
+              <button class="btn-right" ng-click="$ctrl.openModal('upload')">
                 <i class="ion-plus-round"></i>
               </button>
             </ion-nav-buttons>
 </ion-nav-bar>
 
+
+
 <!--Image List-->
 <ion-view ng-show="{{$ctrl.images.length > 0}}" view-title="List">
   <ion-scroll zooming="true" direction="y">
+
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="$ctrl.doRefresh()">
+  </ion-refresher>
 
         <div class="img-contain" height="100vh" ng-repeat="item in $ctrl.images track by $index">
           <i class="ion-android-download" aria-hidden="true" ng-click="$ctrl.viewPreview(item.image.public_id)"></i>

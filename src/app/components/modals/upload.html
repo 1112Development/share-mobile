@@ -6,9 +6,16 @@
   <ion-content>
 
     <!--need a square placeholder here for the image-->
-
+    <div class="text-center upload">
+    <div>
+      <i class="ion-camera" aria-hidden="true" ng-click="$ctrl.addImage('camera')"></i>
+    </div>
     <button ng-click="$ctrl.addImage('camera')">Take Picture</button>
+    <div>
+      <i class="ion-image" aria-hidden="true" ng-click="$ctrl.addImage('file')"></i>
+    </div>
     <button ng-click="$ctrl.addImage('file')">From Gallery</button>
+    </div>
   </ion-content>
 </ion-modal-view>
 
