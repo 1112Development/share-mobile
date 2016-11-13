@@ -1,7 +1,7 @@
 <!--Header Bar-->
 <ion-nav-bar class="nav-bar">
             <ion-nav-buttons>
-              <button class="btn-right" ng-click="$ctrl.openModal('upload')">
+              <button class="btn-right button-clear" ng-click="$ctrl.openModal('upload')">
                 <i class="ion-plus-round"></i>
               </button>
             </ion-nav-buttons>
@@ -14,9 +14,11 @@
   <ion-scroll zooming="true" direction="y">
 
   <ion-refresher
-    pulling-text="Pull to refresh..."
+    pulling-text="refreshing..."
     on-refresh="$ctrl.doRefresh()">
   </ion-refresher>
+
+
 
         <div class="img-contain" height="100vh" ng-repeat="item in $ctrl.images track by $index">
           <i class="ion-android-download" aria-hidden="true" ng-click="$ctrl.viewPreview(item.image.public_id)"></i>
