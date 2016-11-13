@@ -6,9 +6,15 @@
     </button>
   </ion-header-bar>
   <ion-content>
+  <div class="download">
 
     <img ng-src="{{$ctrl.URI}}"/>
-
-    <button ng-click="$ctrl.download($ctrl.downloadURL)">Download This Image</button>
+    <div class="text-center download-container">
+    <div>
+    <i class="ion-android-download"></i>
+    </div>
+      <button ng-click="$ctrl.download($ctrl.downloadURL)">Download This Image</button>
+    </div>
+  </div>
   </ion-content>
 </ion-modal-view>

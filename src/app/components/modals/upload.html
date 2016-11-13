@@ -9,21 +9,23 @@
 
     <!--need a square placeholder here for the image-->
     <div class="text-center upload">
-    <div>
-      <i class="ion-camera" aria-hidden="true" ng-click="$ctrl.addImage('camera')"></i>
-    </div>
-    <button ng-click="$ctrl.addImage('camera')">Take Picture</button>
-    <div>
-      <i class="ion-image" aria-hidden="true" ng-click="$ctrl.addImage('file')"></i>
-    </div>
-    <button ng-click="$ctrl.addImage('file')">From Gallery</button>
+      <div class="v-align">
+        <button class="button-clear" ng-click="$ctrl.addImage('camera')">Take Picture</button>
+        <div>
+          <i class="ion-camera" aria-hidden="true" ng-click="$ctrl.addImage('camera')"></i>
+        </div>
+        <button class="button-clear" ng-click="$ctrl.addImage('file')">From Gallery</button>
+        <div>
+          <i class="ion-image" aria-hidden="true" ng-click="$ctrl.addImage('file')"></i>
+        </div>
+      </div>
     </div>
   </ion-content>
 </ion-modal-view>
 
 <ion-modal-view ng-show="$ctrl.URI">
-  <button class="button btn-left" ng-click="$ctrl.cancelImage()"><i class="ion-close"></i></button>
-  <button class="button btn-right" ng-click="$ctrl.upload($ctrl.URI)"><i class="ion-checkmark"></i></button>
+  <button class="button btn-left button-clear" ng-click="$ctrl.cancelImage()"><i class="ion-close"></i></button>
+  <button class="button btn-right button-clear" ng-click="$ctrl.upload($ctrl.URI)"><i class="ion-checkmark"></i></button>
   <img ng-src="{{$ctrl.URI}}"/>
 </ion-modal-view>
 

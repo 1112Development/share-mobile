@@ -8,17 +8,20 @@ ion-header-bar {
 	background:#202020!important;
 	border-bottom: 3px solid #51E649!important;
 
-	h1 {color:#f4f4f4!important;}
+	h1 {color:#51E649 !important}
+}
+ion-modal-view {
+	background:#202020!important;
 }
 
 .button-clear {
+	color:#51E649!important;
 	i {
 
 		color:#51E649!important;
 		font-size: 26px;
 	}
 }
-
 
 .btn-right {
 	position: absolute;
@@ -49,8 +52,44 @@ ion-scroll[direction=y] {
 
 }
 
+.v-align {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 .upload {
+	height: 100vh;
+	width:100%;
+    display: table;
+	text-align: center;
+
+	.scroll {height:100%!important;}
 	i {
 		font-size: 180px;
+		color:#DED;
 	}
+	button {
+		font-size: 24px;
+	}
+
+}
+
+.download {
+	position: relative;
+	height:92vh;
+	button {
+		font-size: 24px;
+	}
+	i {
+		font-size: 38px;
+		color:#51E649!important;
+	}
+}
+
+.download-container {
+	position: absolute;
+	bottom: 20px;
+	width: 256px;
+	margin-left: 50%;
+	left: -128px;
 }
