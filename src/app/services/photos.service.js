@@ -31,12 +31,13 @@ export default class Photos {
 
   // Create thumbnail URL
   getImage(public_id, size) {
+    var height,width;
     if (size == 'thumbnail') {
-      var height = '150';
-      var width = '100';
+        height = '150';
+        width = '100';
     } else {
-      var height = '400';
-      var width = '300';
+        height = window.screen.height;
+        width = window.screen.width;
     }
     let cloudinaryURL = 'http://res.cloudinary.com/hidfratev/';
     let translation = 'c_fit%2Ch_' + height + '%2Cw_' + width + '/';
