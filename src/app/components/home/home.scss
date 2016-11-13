@@ -1,11 +1,28 @@
-img {
-	height: 50%;
-}
-
 .item {padding:0}
 
 ion-view {
 	margin-top: 43px;
+}
+
+ion-header-bar {
+	background:#202020!important;
+	border-bottom: 3px solid #51E649!important;
+
+	h1 {color:#f4f4f4!important;}
+}
+
+.button-clear {
+	i {
+
+		color:#51E649!important;
+		font-size: 26px;
+	}
+}
+
+
+.btn-right {
+	position: absolute;
+	right:8%;
 }
 
 ion-scroll[direction=x] {
@@ -17,16 +34,12 @@ ion-scroll[direction=y] {
 .text-center {
 	text-align: center;
 }
-.btn-right {
-	position: absolute;
-	right: 8%;
-}
 
 .img-contain {
 	position: relative;
 	display: flex;
 	i {
-		font-size: 30px;
+		font-size: 38px;
 		position: absolute;
 		right: 8%;
 		top:5%;
