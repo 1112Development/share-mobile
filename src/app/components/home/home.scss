@@ -1,83 +1,35 @@
-.table-contain {
-	display: table !important;
-	width: 100% !important;
-	height: 100% !important;
-}
-
-.center-block {
-	display: table-cell;
-  	vertical-align: middle;
-	margin:auto;
-	text-align: center;
-	position: relative;
-}
-
-.rectangle {
-	width: 84%;
-    height: 76%;
-    left: 8%;
-    top:12%;
-    position: absolute;
-    margin: auto;
-    border: 2px solid #4C4C4C;
-
-    h2,h3 {
-    	top:75%;
-    	position: relative;
-    	text-align: center;
-    	color:#D8D8D8;
-    	font-weight: 200;
-    }
-}
-
-.button {
-	width:50px;
-	height:50px;
-}
-
-
-
-.add-image {
-	width:100px;
-	height:100px;
-	border-radius: 100%;
-	background: #373737;
-	color:#51E649;
-	font-size: 50px;
-	border:2px solid #51E649;
-}
-
 img {
-	max-width: 100%;
-}
-body {
-	background:#373737;
-	font-family: helvetica;
-}
-.pane {
-	background:#373737;
+	height: 50%;
 }
 
-.nav-bar {
-	background:#202020;
-	button {
+.item {padding:0}
+
+ion-view {
+	margin-top: 43px;
+}
+
+ion-scroll[direction=x] {
+  width: 100vw;
+}
+ion-scroll[direction=y] {
+  height: 100vh;
+}
+
+.btn-right {
+	position: absolute;
+	right: 8%;
+}
+
+.img-contain {
+	position: relative;
+	display: flex;
+	i {
+		font-size: 30px;
+		position: absolute;
+		right: 8%;
+		top:5%;
 		color:#fff;
-		font-size: 2em;
-	}
-	.btn-right{
-
-		top:5px;
-		position: absolute;
-		right:5%;
-	}
-	.btn-left{
-
-		top:5px;
-		position: absolute;
-		left:5%;
-	}
-
-	.back-btn {
 
 	}
+	
 }

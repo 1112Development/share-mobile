@@ -9,20 +9,14 @@
 
 <!--Image List-->
 <ion-view ng-show="{{$ctrl.images.length > 0}}" view-title="List">
-  <ion-list>
-    <ion-item>
-      <div class="row" ng-repeat="item in $ctrl.images track by $index" ng-if="$index % 2 === 0">
-      <div class="col col-50" ng-if="$index < $ctrl.images.length">
-        <img ng-src="{{$ctrl.getThumbnail(item.image.public_id)}}" ng-click="$ctrl.viewPreview(item.image.public_id)"/>
-              </div>
-              <div class="col col-50" ng-if="$index + 1 < $ctrl.images.length">
-                <img ng-src="{{$ctrl.getThumbnail(item.image.public_id)}}"
-                     ng-click="$ctrl.viewPreview(item.image.public_id)"/>
-              </div>
+  <ion-scroll zooming="true" direction="y">
 
-      </div>
-    </ion-item>
-  </ion-list>
+        <div class="img-contain" height="100vh" ng-repeat="item in $ctrl.images track by $index">
+          <i class="ion-android-download" aria-hidden="true" ng-click="$ctrl.viewPreview(item.image.public_id)"></i>
+          <img ng-src="{{$ctrl.getPreview(item.image.public_id)}}"/>
+        </div>
+
+  </ion-scroll>
 </ion-view>
 
 <!--No Images-->
