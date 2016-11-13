@@ -80,6 +80,16 @@ class HomeController {
     });
   }
 
+  doRefresh() {
+    var that = this;
+    return this._Photos.getPhotos(that._Location.setLocation()).then(
+      (images) => {
+        that.images = images;
+        console.log('images',images)
+      }
+      );
+  }
+
   upload(imageURI) {
     this.URI = ""
     this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>

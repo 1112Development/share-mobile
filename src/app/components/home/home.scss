@@ -14,7 +14,9 @@ ion-scroll[direction=x] {
 ion-scroll[direction=y] {
   height: 100vh;
 }
-
+.text-center {
+	text-align: center;
+}
 .btn-right {
 	position: absolute;
 	right: 8%;
@@ -31,5 +33,11 @@ ion-scroll[direction=y] {
 		color:#fff;
 
 	}
-	
+
+}
+
+.upload {
+	i {
+		font-size: 180px;
+	}
 }
