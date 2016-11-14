@@ -39,6 +39,7 @@ class HomeController {
 
   viewPreview(public_id) {
     this.URI = this._Photos.getImage(public_id, 'preview');
+    this.downloadURL = this._Photos.getImage(public_id, null);
     this.openModal('preview')
   }
 
@@ -86,6 +87,11 @@ class HomeController {
       console.log('resolution', res)
     );
   }
+
+  download(imageURI) {
+    this._Photos.downloadPhoto(imageURI);
+  }
+
   testList() {
     this._Photos.getPhotos().then((res) => console.log(res));
   }

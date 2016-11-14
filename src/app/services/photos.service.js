@@ -1,26 +1,28 @@
 export default class Photos {
-  constructor($http, $q, $cordovaCamera, $ionicPlatform, $cordovaFileTransfer, $cordovaDevice, AppConstants) {
+  constructor($http, $q, $cordovaFile, $timeout, $cordovaCamera, $ionicPlatform, $cordovaFileTransfer, $cordovaDevice, AppConstants) {
     'ngInject';
 
     this._$http = $http;
     this._$q = $q;
+    this._$cordovaFile = $cordovaFile;
+    this._$timeout = $timeout;
     this._$cordovaCamera = $cordovaCamera;
     this._$ionicPlatform = $ionicPlatform;
     this._$cordovaFileTransfer = $cordovaFileTransfer;
-    this._$cordovaDevice = $cordovaDevice
+    this._$cordovaDevice = $cordovaDevice;
     this._AppConstants = AppConstants;
 
   }
 
 
   // Get list of photos from the api, takes a location object.
-  getPhotos (location) {
+  getPhotos(location) {
     // convert the location object to URL params
-    let URILocation = 'lat=' + encodeURIComponent(location.lat) + '&' +'long=' + encodeURIComponent(location.long);
+    let URILocation = 'lat=' + encodeURIComponent(location.lat) + '&' + 'long=' + encodeURIComponent(location.long);
 
     let deferred = this._$q.defer();
     this._$http({
-      url: this._AppConstants.api +'photos/' + '?' + URILocation,
+      url: this._AppConstants.api + 'photos/' + '?' + URILocation,
       method: 'GET'
     }).then(
       (res) => deferred.resolve(res.data),
@@ -34,17 +36,22 @@ export default class Photos {
     if (size == 'thumbnail') {
       var height = '150';
       var width = '100';
-    } else {
+    }
+    if (size == 'preview') {
       var height = '400';
       var width = '300';
     }
     let cloudinaryURL = 'http://res.cloudinary.com/hidfratev/';
     let translation = 'c_fit%2Ch_' + height + '%2Cw_' + width + '/';
-    return cloudinaryURL + translation + public_id
+    if (size) {
+      return cloudinaryURL + translation + public_id
+    } else {
+      return cloudinaryURL + public_id
+    }
   }
 
   // Gets an image from Camera or the photo Library, returns photo's storage location
-  newPhoto (source) {
+  newPhoto(source) {
     var q = this._$q.defer();
     var _picker = false;
     if (source === 'camera') {
@@ -62,14 +69,14 @@ export default class Photos {
       destinationType: Camera.DestinationType.FILE_URI,
       sourceType: _picker ? _camera : _photoLibrary,
       encodingType: Camera.EncodingType.JPEG,
-      saveToPhotoAlbum:_picker ? true : false
+      saveToPhotoAlbum: _picker ? true : false
     };
 
     this._$cordovaCamera.getPicture(options).then(function (imageData) {
       // Fix for old android versions until Cordova 3.5.0
-      if (imageData.substring(0,21)=="content://com.android") {
+      if (imageData.substring(0, 21) == "content://com.android") {
         var photo_split = imageData.split("%3A");
-        imageData = "content://media/external/images/media/"+photo_split[1];
+        imageData = "content://media/external/images/media/" + photo_split[1];
       }
       q.resolve(imageData);
     }, function (err) {
@@ -80,8 +87,8 @@ export default class Photos {
   }
 
 
-  uploadPhoto (photoURI, location) {
-  // I don't know if we need the $q and defer here....?
+  uploadPhoto(photoURI, location) {
+    // I don't know if we need the $q and defer here....?
     let q = this._$q.defer();
     let serverURL = this._AppConstants.api + 'photos/';
 
@@ -99,7 +106,6 @@ export default class Photos {
       'device': this._$cordovaDevice.getDevice()
     };
 
-
     this._$cordovaFileTransfer.upload(encodeURI(serverURL), photoURI, options).then(function (data) {
       q.resolve(data);
     }, function (err) {
@@ -110,25 +116,51 @@ export default class Photos {
 
   }
 
-  // toDataUrl(src, callback, outputFormat) {
-  //     var img = new Image();
-  //     img.crossOrigin = 'Anonymous';
-  //     img.onload = function() {
-  //       var canvas = document.createElement('CANVAS');
-  //       var ctx = canvas.getContext('2d');
-  //       var dataURL;
-  //       canvas.height = this.height;
-  //       canvas.width = this.width;
-  //       ctx.drawImage(this, 0, 0);
-  //       dataURL = canvas.toDataURL(outputFormat);
-  //       callback(dataURL);
-  //     };
-  //     img.src = src;
-  //     if (img.complete || img.complete === undefined) {
-  //       img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-  //       img.src = src;
-  //     }
-  //
-  //     return img;
-  //   }
+  downloadPhoto(photoURL) {
+    let q = this._$q.defer();
+
+    var targetPath = cordova.file.dataDirectory + "temp.jpeg";
+    var trustHosts = true;
+    var options = {};
+    var that = this;
+
+    // save the photo to a temp location, then pass it to the save function, then delete the temp photo
+    this._$cordovaFileTransfer.download(photoURL, targetPath, options, trustHosts)
+      .then(
+        function (result) {
+          that.savePhoto(result);
+          that.removeTempPhoto(result.name)
+        }, function (err) {
+          console.log('error', err);
+          q.reject(err)
+        }, function (progress) {
+          that._$timeout(() => {
+            // that.downloadProgress = (progress.loaded / progress.total) * 100;
+          });
+        });
+  }
+
+  savePhoto(fileEntry) {
+    let url = fileEntry.nativeURL;
+    var album = 'Share';
+    cordova.plugins.photoLibrary.saveImage(
+      url,
+      album,
+      (success) => {
+        console.log('saved', success)
+      },
+      (err) => {
+        console.log('error', err)
+      });
+  }
+
+  removeTempPhoto(url = 'temp.jpeg') {
+    this._$cordovaFile.removeFile(cordova.file.dataDirectory, url)
+      .then(function (success) {
+        console.log('deleted', success)
+      }, function (error) {
+        console.log('did not delete', error)
+      });
+  }
+
 }
