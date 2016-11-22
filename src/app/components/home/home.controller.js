@@ -117,7 +117,7 @@ class HomeController {
               that.progress = null;
             },1000);
           }
-    },1000);
+    },200);
 
     this.closeModal('download');
   }

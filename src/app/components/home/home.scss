@@ -35,6 +35,47 @@ ion-modal-view {
 	}
 }
 
+progress {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	margin:0;
+	height:60px;
+}
+
+.progress-num {
+	color:#fff;
+	z-index: 999;
+	position: absolute;
+	top:20px;
+	left:20px;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+   appearance: none;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #202020;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: #3299E6;
+}
+
+progress:after {
+  content: attr(value) "%";
+  position: absolute;
+  top: 20px;
+  color:#fff;
+  left:5px;
+}
+
+
 .btn-right{
 
   position: absolute;
