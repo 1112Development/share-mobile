@@ -1,21 +1,20 @@
-<ion-modal-view>
+<ion-modal-view id="download-modal">
   <ion-header-bar>
-    <h1 class="title">Download an Image</h1>
-    <button class="button-clear" ng-click="$ctrl.closeModal('download')">
-    	<i class="ion-close-round"></i>
+    <h1 class="title">Download?</h1>
+      <button class="button-clear btn-right" ng-click="$ctrl.closeModal('download')">
+      <i class="ion-close-round"></i>
     </button>
+    
   </ion-header-bar>
   <ion-content>
-  <div class="download">
+  <div class="download text-center">
 
-    <img ng-src="{{$ctrl.URI}}"/>
+  
+    <button class="button-clear" ng-click="$ctrl.download($ctrl.downloadURL)"><i class="ion-android-download"></i></button>
 
-    <div class="text-center download-container">
-    <div>
-    <i class="ion-android-download"></i>
-    </div>
     <button class="button-clear" ng-click="$ctrl.download($ctrl.downloadURL)">Download This Image</button>
-    </div>
+
+  
   </div>
 
   </ion-content>

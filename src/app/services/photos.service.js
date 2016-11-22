@@ -1,5 +1,5 @@
 export default class Photos {
-  constructor($http, $q, $cordovaFile, $timeout, $cordovaCamera, $ionicPlatform, $cordovaFileTransfer, $cordovaDevice, AppConstants) {
+  constructor($http,$rootScope, $q, $cordovaFile, $timeout, $cordovaCamera, $ionicPlatform, $cordovaFileTransfer, $cordovaDevice, AppConstants) {
     'ngInject';
 
     this._$http = $http;
@@ -44,9 +44,9 @@ export default class Photos {
     let cloudinaryURL = 'http://res.cloudinary.com/hidfratev/';
     let translation = 'c_fit%2Ch_' + height + '%2Cw_' + width + '/';
     if (size) {
-      return cloudinaryURL + translation + public_id
+      return cloudinaryURL + translation + public_id;
     } else {
-      return cloudinaryURL + public_id
+      return cloudinaryURL + public_id;
     }
   }
 
@@ -129,14 +129,14 @@ export default class Photos {
       .then(
         function (result) {
           that.savePhoto(result);
-          that.removeTempPhoto(result.name)
+          that.removeTempPhoto(result.name);
         }, function (err) {
           console.log('error', err);
-          q.reject(err)
+          q.reject(err);
         }, function (progress) {
-          that._$timeout(() => {
-            // that.downloadProgress = (progress.loaded / progress.total) * 100;
-          });
+         
+            that.downloadProgress = (progress.loaded / progress.total) * 100;
+        
         });
   }
 
@@ -147,19 +147,19 @@ export default class Photos {
       url,
       album,
       (success) => {
-        console.log('saved', success)
+        console.log('saved', success);
       },
       (err) => {
-        console.log('error', err)
+        console.log('error', err);
       });
   }
 
   removeTempPhoto(url = 'temp.jpeg') {
     this._$cordovaFile.removeFile(cordova.file.dataDirectory, url)
       .then(function (success) {
-        console.log('deleted', success)
+        console.log('deleted', success);
       }, function (error) {
-        console.log('did not delete', error)
+        console.log('did not delete', error);
       });
   }
 

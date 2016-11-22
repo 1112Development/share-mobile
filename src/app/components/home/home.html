@@ -1,10 +1,13 @@
 <!--Header Bar-->
 <ion-nav-bar class="nav-bar">
             <ion-nav-buttons>
+            <span style="color:#fff;">{{$ctrl.progress ? $ctrl.progress  + "%" : ""}}</span>
               <button class="btn-right button-clear" ng-click="$ctrl.openModal('upload')">
                 <i class="ion-plus-round"></i>
               </button>
             </ion-nav-buttons>
+
+
 </ion-nav-bar>
 
 
