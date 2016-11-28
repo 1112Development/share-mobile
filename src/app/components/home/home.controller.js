@@ -90,7 +90,9 @@ class HomeController {
     return this._Photos.getPhotos(that._Location.setLocation()).then(
       (images) => {
         that.images = images;
+
         console.log('images',images);
+
       }
       );
   }

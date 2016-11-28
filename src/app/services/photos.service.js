@@ -35,6 +35,7 @@ export default class Photos {
   getImage(public_id, size) {
     var height,width;
     if (size == 'thumbnail') {
+
       height = '150';
       width = '100';
     } else {
