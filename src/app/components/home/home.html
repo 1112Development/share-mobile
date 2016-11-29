@@ -2,7 +2,7 @@
 <ion-nav-bar class="nav-bar">
             <ion-nav-buttons>
 
-            
+
             <progress ng-show="$ctrl.progress" max="100" value={{$ctrl.progress}}></progress>
 
               <button class="btn-right button-clear" ng-click="$ctrl.openModal('upload')">
@@ -29,7 +29,7 @@
         <div class="img-contain" height="100vh" ng-repeat="item in $ctrl.images track by $index">
 
           <i class="ion-android-download" aria-hidden="true" ng-disabled="$ctrl.progress" ng-click="$ctrl.viewPreview(item.image.public_id)"></i>
-
+          <img ng-src="{{$ctrl.getPreview(item.image.public_id)}}"/>
         </div>
 
   </ion-scroll>

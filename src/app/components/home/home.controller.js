@@ -86,10 +86,10 @@ class HomeController {
   }
 
   doRefresh() {
-    var that = this;
-    return this._Photos.getPhotos(that._Location.setLocation()).then(
+    // var that = this;
+    return this._Photos.getPhotos(this._Location.setLocation()).then(
       (images) => {
-        that.images = images;
+        this.images = images;
 
         console.log('images',images);
 
