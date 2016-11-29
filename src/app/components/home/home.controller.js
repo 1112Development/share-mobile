@@ -67,7 +67,7 @@ class HomeController {
 
   cancelImage() {
     this.photoExists = false;
-    this.URI = "";
+    this.closeModal('upload');
   }
 
   addImage(source) {
@@ -102,6 +102,7 @@ class HomeController {
     this._Photos.uploadPhoto(imageURI, this._Location.getLocation()).then((res) =>
       console.log('resolution', res)
     );
+    this.closeModal('upload');
   }
 
   download(imageURI) {
